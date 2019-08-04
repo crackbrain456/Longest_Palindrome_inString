@@ -1,0 +1,70 @@
+public static void main(String[] args) throws IOException {
+    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	 int t=Integer.parseInt(br.readLine());
+		for(int i=0;i<t;i++) {
+			String s = br.readLine();
+			longestpalid(s);
+		}
+	    
+	}
+
+	public static void longestpalid(String n) {
+		char[] s = n.toCharArray();
+		int size = n.length();
+		int left=0;
+		int right = 0;
+		String news ="";
+		String news2 ="";
+		for(int i=0;i<size;i++) {
+			
+			int mid=i;
+			left=mid-1;
+			right=mid+1;
+			if(left>=0 && right<=size-1) {
+				while(s[left]==s[right]) {
+					if(right-left+1>news.length()) {
+						news = n.substring(left, right+1);
+				//	System.out.println(news);
+					}
+					
+					left--;
+					right++;
+					if(left<0 || right>=size)
+						break;
+				}
+			}
+		}
+		if(news.length()==0) {
+			news = news+n.charAt(0);
+		}
+		for(int i=0;i<size-1;i++) {
+			//String news2 ="";
+			int mid1 =i;
+			int mid2 = i+1;
+			left=mid1-1;
+			right=mid2+1;
+			if(s[mid1]==s[mid2]) {
+				if(mid2-mid1+1>news2.length())
+					news2 =  n.substring(mid1, mid2+1);
+			if(left>=0 && right<=size-1) {
+				while(s[left]==s[right]) {
+					if(right-left+1>news2.length()) {
+						news2 = n.substring(left, right+1);
+					//	System.out.println(news2);
+					}
+					left--;
+					right++;
+					if(left<0 || right>=size)
+						break;
+				}
+			}
+			}
+		}
+		//System.out.println((news));
+		//System.out.println((news2));
+		if(news.length()>news2.length()) {
+			System.out.println(news);
+		}else {
+			System.out.println(news2);
+		}
+	}
